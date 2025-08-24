@@ -9,13 +9,13 @@ provider "aws" {
 # -----------------------------
 # VPC
 # -----------------------------
-resource "aws_vpc" "my_vpc" {
+resource "aws_vpc" "k8s_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "my-vpc"
+    Name = "k8s_vpc"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_vpc" "my_vpc" {
 # Subnet
 # -----------------------------
 resource "aws_subnet" "my_subnet" {
-  vpc_id                  = aws_vpc.my_vpc.id
+  vpc_id                  = aws_vpc.k8s_vpc.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
@@ -37,7 +37,7 @@ resource "aws_subnet" "my_subnet" {
 # Internet Gateway
 # -----------------------------
 resource "aws_internet_gateway" "my_igw" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.k8s_vpc.id
 
   tags = {
     Name = "my-igw"
@@ -48,7 +48,7 @@ resource "aws_internet_gateway" "my_igw" {
 # Route Table
 # -----------------------------
 resource "aws_route_table" "my_rt" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.k8s_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -70,7 +70,7 @@ resource "aws_route_table_association" "my_rta" {
 # Security Group
 # -----------------------------
 resource "aws_security_group" "my_sg" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.k8s_vpc.id
   name   = "allow_ssh_http"
 
   ingress {
