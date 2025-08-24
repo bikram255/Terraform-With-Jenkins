@@ -1,0 +1,6 @@
+README.md
+terraform.tfstate
+.terraform.lock.hcl
+.terraform/
+*.tfvars
+*.log
