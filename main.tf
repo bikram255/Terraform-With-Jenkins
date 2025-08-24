@@ -109,7 +109,7 @@ resource "aws_instance" "my_ec2" {
   subnet_id     = aws_subnet.my_subnet.id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   associate_public_ip_address = true
-  key_name      = "my-key"  # <-- replace with your existing key pair name
+  key_name      = "kops2025"  # <-- replace with your existing key pair name
 
   tags = {
     Name = "my-ec2"
