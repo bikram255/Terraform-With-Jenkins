@@ -3,7 +3,6 @@
 # -----------------------------
 provider "aws" {
   region = "ap-south-1"   # change if needed
-  profile = "dev"
 }
 
 # -----------------------------
